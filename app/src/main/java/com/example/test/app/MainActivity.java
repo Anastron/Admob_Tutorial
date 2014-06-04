@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.AdRequest;
+import com.google.analytics.tracking.android.EasyTracker;
 
 
 
@@ -56,6 +57,19 @@ public class MainActivity extends ActionBarActivity {
     public void onDestroy() {
         adView.destroy();
         super.onDestroy();
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        // The rest of your onStart() code.
+        EasyTracker.getInstance(this).activityStart(this);  // Add this method.
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+         // The rest of your onStop() code.
+        EasyTracker.getInstance(this).activityStop(this);  // Add this method.
     }
 
 
